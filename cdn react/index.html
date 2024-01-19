@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="myapp">
+        hello worlddd
+    </div>
+
+    <script type="text/babel">
+        console.log("hii");
+
+        let isAgree= true;
+        let promise = new Promise((resolve, reject)=>{
+            if (isAgree) {
+                setTimeout(()=>{
+                    resolve("Ha sir chalungi....");
+                },2000)
+            }
+            else reject("Sir nahi chalungi....")
+        })
+
+        promise.then((res)=>{
+            console.log(res);
+        }).catch((res)=>{
+            console.log(res);
+        })
+
+
+        function AlertBtn()
+        {
+            const bla=()=> alert("hello rect welcome!");
+            return <button onclick={bla}> Click me </button>
+        };
+        
+        class MyApp extends React.Component {
+            render(){
+                return <div > hello react component  <AlertBtn /> </div>
+            }
+        }
+
+        ReactDOM.render(<MyApp/>, document.getElementById("myapp"))
+
+    </script>
+    
+</body>
+</html>

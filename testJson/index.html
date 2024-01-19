@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello</h1>
+
+    <script type="module">
+
+        // async function getData(){   
+        //         return await fetch("./mydata.json")
+        //         .then((res)=> res.json()).then((res)=> res).catch((e)=> "Error fetching")
+        // }
+
+
+        // async function fn(){
+        //     console.log("++++++++++++++++");
+        //     let data = await getData();
+        //     console.log(data);
+        //     console.log("--------------------------------");
+        // }
+        // fn()
+
+        let users= [
+            {
+                name:"aman1",
+                state: "bihar",
+                reel:23
+
+            },
+            {
+                name:"raju",
+                state: "bihar",
+                reel:50
+            },
+            {
+                name:"aman3",
+                state: "rajasthan",
+                reel:12
+
+            },
+            {
+                name:"ram",
+                state: "gujrat",
+                reel:30
+
+            },
+            {
+                name:"shaym",
+                state: "bihar",
+                reel:9
+
+            },
+        ]
+
+let formBihar= 
+users.reduce((maxReel,creel) => 
+maxReel.reel > creel.reel 
+? maxReel
+: creel,
+ users[0]);
+//  let counts= formBihar.length
+ 
+ console.log(formBihar);
+//  console.log(counts);
+
+    </script>
+</body>
+</html>
