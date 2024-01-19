@@ -3,26 +3,15 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { isLogin, logOut,setLogin } from '../Validations/Auth';
+import { logOut } from '../Validations/Auth';
 import { Button } from 'react-bootstrap';
-const NavLinkComp = () => {
+const NavLinkComp = ( props) => {
 
-  const [loginState,setLoginState]= useState(isLogin());
-  let navigation = useNavigate()
-  function logout(){
-    setLoginState(false);
-    logOut();
-    navigation("login");
-
-  }
-
-  function HandelLogin(){
-  //  setLogin();
-  //  setLoginState(true);
-  }
+  const [loginState,setLoginState]= useState(false);
+  let navigation = useNavigate();
   useEffect(()=>{
-    setLoginState(true)
-  },[localStorage])
+setLoginState(JSON.parse(props.loginInfo))
+  },[props.loginInfo])
 
   return (
     <header>
@@ -34,8 +23,16 @@ const NavLinkComp = () => {
             <NavLink className="nav-link" to="/about" state={{name:"Dharam"}}>About</NavLink>
             <NavLink className="nav-link" to="/contact">Contact</NavLink>
             <NavLink className="nav-link" to="/flitter">flitter</NavLink>
-            {loginState ? <Button  variant='danger' onClick={()=>{logout()}} >LogOut</Button> : 
-            <Button  variant='success' onClick={()=>{HandelLogin()}} >SingUp</Button>}
+            {
+              loginState ?
+            <Button  variant='danger' onClick={()=>{
+              setLoginState(false)
+              logOut();
+              navigation("login");
+            }} >LogOut</Button>  
+            :
+            <NavLink className="nav-link" to="/login">Login</NavLink>
+            }
             
           </Nav>
         </Container>

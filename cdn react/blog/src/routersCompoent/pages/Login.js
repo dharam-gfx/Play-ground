@@ -1,26 +1,15 @@
 import { Button, Form, InputGroup } from "react-bootstrap"
 import { isLogin, setLogin } from "../../Validations/Auth"
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const Login = () => {
+const Login = (props) => {
     let navigate = useNavigate();
 
-    function Login(){
-        if(!isLogin()){
-            setLogin();
-        }
-        navigate('home');
-    }
-    useEffect(()=>{
-        if (isLogin()) {
-            navigate("/");
-          }
-    },[localStorage])
     return (
+
         <div>
             <h4>Login</h4>
-
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -30,9 +19,12 @@ const Login = () => {
                     <Form.Label>Password address</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" />
                 </Form.Group>
-               
             </Form>
-            <Button className="mt-3" onClick={()=>{Login()}}>Login</Button>
+            <Button className="mt-3" onClick={()=>{
+                setLogin();
+                props.logInfo(isLogin());
+                navigate("/")
+            }} >Login</Button>
         </div>
 
     )
