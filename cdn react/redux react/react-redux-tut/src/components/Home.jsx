@@ -1,12 +1,11 @@
 import React from 'react'
+import WishListContainer from '../containers/WishListContainer';
 
 const Home = (props) => {
     console.log("props",props);
     return (
         <div>
-            <h1 className="text-3xl font-bold underline text-red-700">
-                Hello world!
-            </h1>
+            <WishListContainer></WishListContainer>
 
             <div className='border rounded border-red-600 p-2 inline-flex space-x-5 justify-center items-center'>
                 <div className=''>
@@ -18,17 +17,18 @@ const Home = (props) => {
                 </div>
                 <div>
                     <button onClick={()=>props.addToCartHandler({
+                        id:props.cartData.cartItems.length,
                         price:45000,
                         name:"iphone 15"
                     })} className='bg-red-600 p-2 rounded text-white'>add to card</button>
+                    <button onClick={()=>props.removeCartHandler({
+                      id:1
+                    })} className='bg-red-600 p-2 rounded text-white'>remove</button>
                 </div>
 
             </div>
 
-            <div>
-            <img className='w-12 absolute top-5 right-5' src='https://th.bing.com/th/id/R.c5b9a01d3df7bc6728d7293714fff622?rik=521K%2fkaY4OH4WA&riu=http%3a%2f%2fwww.inmotionhosting.com%2fsupport%2fimages%2fstories%2ficons%2fecommerce%2fadd-to-cart-light.png&ehk=%2fJJA9XMsvG9h0FWr%2fDtkK%2fFW4cJL1CpuNRASuT3Tlg4%3d&risl=&pid=ImgRaw&r=0'/>
 
-            </div>
 
         </div>
     )
