@@ -1,6 +1,5 @@
 
 const Loader = () => {
-
     return (
         <div className="flex items-center justify-center w-100 h-[100vh] border border-red-200 rounded-lg bg-gray-50 dark:bg-red-950 dark:border-red-700">
             <div role="status">
