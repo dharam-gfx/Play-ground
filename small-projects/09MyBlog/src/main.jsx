@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { Layout, Home ,About, Login, Signup, PageNotFound, CreatePost, EditPost, AuthContainer, Post, VerifyEmail } from './pages/index';
+import { Layout, Home, About, Login, Signup, PageNotFound, CreatePost, EditPost, AuthContainer, Post, VerifyEmail } from './pages/index';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
@@ -16,9 +16,9 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<Signup />}></Route>
       <Route path='/verify-email' element={<VerifyEmail />}></Route>
       <Route path='/post/:postID' loader={EditPostAPI} element={<Post />}></Route>
-      <Route path='/create-post' element={<AuthContainer><CreatePost /></AuthContainer> }></Route>
-      <Route path='/edit-post/:postID' loader={EditPostAPI} element={ <AuthContainer><EditPost /></AuthContainer>}></Route>
-      <Route path="*" element={<PageNotFound/>} />
+      <Route path='/create-post' element={<AuthContainer><CreatePost /></AuthContainer>}></Route>
+      <Route path='/edit-post/:postID' loader={EditPostAPI} element={<AuthContainer><EditPost /></AuthContainer>}></Route>
+      <Route path="*" element={<PageNotFound />} />
     </Route>
 
   )
@@ -26,10 +26,10 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot( document.getElementById( 'root' ) ).render(
   // <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router}>
-        <Layout></Layout>
-      </RouterProvider>
-    </Provider>
+  <Provider store={store}>
+    <RouterProvider router={router}>
+      <Layout></Layout>
+    </RouterProvider>
+  </Provider>
   // </React.StrictMode>,
 )

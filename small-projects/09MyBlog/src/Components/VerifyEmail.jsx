@@ -15,19 +15,32 @@ const VerifyEmail = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [disabled, setDisabled] = useState( false )
     const authenticated = useSelector( ( state ) => state.AuthReducer.userAuth.status );
-    const emailVerification = useSelector( ( state ) => state.AuthReducer.userAuth.userInfo?.emailVerification );
-
     useEffect( () => {
-        setIsEmailVerification( searchParams.get( "userId" ) && searchParams.get( "secret" ) ? true : false );
-        if (searchParams.get( "userId" ) && searchParams.get( "secret" ) ) {
-            verifyEmail();
+        async function getUser() {
+            let userVerily = false;
+            await authService.getCurrentUser().then( user => {
+                userVerily = user?.emailVerification || false;
+            } ).catch( error => {
+                console.log( "getCurrentUser", error );
+                userVerily = false;
+            } )
+            return userVerily
         }
-        else if ( !authenticated && !( searchParams.get( "userId" ) && searchParams.get( "secret" ) ) ) {
-            navigate( '/' )
-        }
-        else if(emailVerification){
-            navigate( '/' )
-        }
+        ( async () => {
+            let emailVerification = await getUser();
+            console.log( "emailVerification", emailVerification, authenticated );
+            setIsEmailVerification( searchParams.get( "userId" ) && searchParams.get( "secret" ) ? true : false );
+            if ( searchParams.get( "userId" ) && searchParams.get( "secret" ) && !emailVerification) {
+                verifyEmail();
+            }
+            else if ( !authenticated && !( searchParams.get( "userId" ) && searchParams.get( "secret" ) ) ) {
+                navigate( '/' )
+            }
+            else if ( emailVerification ) {
+                navigate( '/' )
+            }
+        } )()
+
     }, [] )
     const verifyEmailHandler = async ( { email, password } ) => {
         setDisabled( true )
@@ -58,7 +71,7 @@ const VerifyEmail = () => {
         <>
             {
                 isEmailVerification ?
-                    <div className='h-[63.6vh] grid items-center justify-center dark:bg-gray-900 dark:text-white'>
+                    <div className='h-[calc(100vh-242px)]  grid items-center justify-center dark:bg-gray-900 dark:text-white'>
                         <h1 className='text-center text-lg md:text-4xl bold '>
                             {parse( verificationTitle )}
                         </h1>

@@ -13,12 +13,12 @@ const Layout = () => {
             if ( user ) {
                 dispatch( login( user ) )
             }
-            else{
-                dispatch(logout())
+            else {
+                dispatch( logout() )
             }
-        } ).catch(error =>{
-            console.log("getCurrentUser", error);
-        })
+        } ).catch( error => {
+            console.log( "getCurrentUser", error );
+        } )
     }, [] )
 
     return (

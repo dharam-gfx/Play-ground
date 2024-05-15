@@ -14,7 +14,7 @@ class DatabaseService {
         this.storage = new Storage( this.client );
     }
 
-    async createPost( {categories, title,subtitle, content, status, userID, featuredImageID } ) {
+    async createPost( { categories, title, subtitle, content, status, userID, featuredImageID } ) {
         try {
             return await this.databases.createDocument(
                 appWriteConfig.appWriteDatabaseID,
@@ -60,19 +60,19 @@ class DatabaseService {
             console.log( "Error :: getting posts", error );
         }
     }
-    async deletePost( documentID ,featuredImageID ) {
+    async deletePost( documentID, featuredImageID ) {
         try {
-                await this.databases.deleteDocument(
+            await this.databases.deleteDocument(
                 appWriteConfig.appWriteDatabaseID,
                 appWriteConfig.appWriteCollectionID,
                 documentID );
-                return this.deleteFile(featuredImageID);
+            return this.deleteFile( featuredImageID );
         } catch ( error ) {
             log( "Error :: getting post", error );
             return false;
         }
     }
-    async updatedPost( documentID, {categories, title,subtitle, content, status, userID, featuredImageID } ) {
+    async updatedPost( documentID, { categories, title, subtitle, content, status, userID, featuredImageID } ) {
         try {
             return await this.databases.updateDocument(
                 appWriteConfig.appWriteDatabaseID,
@@ -109,7 +109,7 @@ class DatabaseService {
 
     async deleteFile( fileID ) {
         try {
-                await this.storage.deleteFile(
+            await this.storage.deleteFile(
                 appWriteConfig.appWriteBucketID,
                 fileID
             )
@@ -135,7 +135,7 @@ class DatabaseService {
             appWriteConfig.appWriteBucketID,
             fileID );
     }
-    
+
     getFileView( fileID ) {
         return this.storage.getFileView(
             appWriteConfig.appWriteBucketID,

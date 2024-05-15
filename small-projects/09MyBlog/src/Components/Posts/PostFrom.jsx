@@ -12,7 +12,7 @@ const PostFrom = ( { post } ) => {
     const categories = ["Food", , "Technology", "Travel", "Education", "Health and fitness", "Lifestyle ", "Fashion and beauty", "Photography ", "Personal ", "Music ", "Business ",
         "Art and design", " Book and writing", "Personal finance", "Sports ", "News", "Movie ", "Religion ", "Political "]
     const userID = useSelector( ( state ) => state.AuthReducer.userAuth.userInfo?.$id );
-    const [disabled,setDisabled] = useState(false)
+    const [disabled, setDisabled] = useState( false )
     const { register, handleSubmit, formState: { errors }, watch, setValue, control, getValues } = useForm( {
         defaultValues: {
             categories: post?.categories || "",
@@ -25,15 +25,15 @@ const PostFrom = ( { post } ) => {
         },
     } );
     useEffect( () => {
-        if (post && (post.userID !== userID) ) {
-            navigate('/')
+        if ( post && ( post.userID !== userID ) ) {
+            navigate( '/' )
         }
     }, [] )
 
     const onSubmit = async ( data ) => {
-        setDisabled(true)
+        setDisabled( true )
         if ( !data.userID ) data.userID = userID;
-        console.log(data);
+        console.log( data );
         if ( data.featuredImageID[0]?.size > 70000 ) {
             toast.warning( "Please upload image below of 50KB" );
             return
@@ -44,12 +44,12 @@ const PostFrom = ( { post } ) => {
                 await databaseService.deleteFile( post.featuredImageID );
             }
             data.featuredImageID = file?.$id ? file.$id : data.featuredImageID;
-            console.log("data",data);
-            const dbPost = await databaseService.updatedPost( post.$id, { ...data ,userID:userID } );
+            console.log( "data", data );
+            const dbPost = await databaseService.updatedPost( post.$id, { ...data, userID: userID } );
 
             if ( dbPost ) {
                 toast.success( "Post updated SuccessFully" )
-                navigate( "/post/"+post.$id );
+                navigate( "/post/" + post.$id );
             } else {
                 file && databaseService.deleteFile( file.$id )
             }
