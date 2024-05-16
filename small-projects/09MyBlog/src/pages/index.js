@@ -11,7 +11,8 @@ import LogoutBtn from "../Components/Header/LogoutBtn.jsx";
 import Login from "../Components/Login.jsx";
 import ScrollButton from "../Components/ScrollButton.jsx";
 import Signup from "../Components/Signup.jsx";
-import VerifyEmail from "../Components/VerifyEmail.jsx";
+import VerifyEmail from "../Components/ForgetPassword.jsx";
+import ForgetPassword from "../Components/ForgetPassword.jsx";
 import Button from "../Components/formComponents/Button.jsx";
 import InputField from "../Components/formComponents/InputField.jsx";
 import SelectField from "../Components/formComponents/SelectField.jsx";
@@ -37,6 +38,7 @@ export {
     Login,
     Signup,
     VerifyEmail,
+    ForgetPassword,
     Button,
     ScrollButton,
     InputField,

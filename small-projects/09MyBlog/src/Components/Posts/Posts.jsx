@@ -40,7 +40,7 @@ const Posts = () => {
                     <div className="flex flex-wrap -m-4"> 
                         {
                             posts && posts.map( ( post ) => (
-                                <div onClick={() => navigate( "/post/" + post.$id )} key={post.$id} className="p-4 md:w-1/3 cursor-pointer transition-transform transform hover:scale-105">
+                                <div onClick={() => navigate( "/post/" + post.$id )} key={post.$id} className="p-4 md:w-1/3 cursor-pointer transition-all transform hover:scale-105">
                                     <div className="h-full border-2 flex flex-col border-gray-200 hover:border-blue-600 border-opacity-60 rounded-lg overflow-hidden">
                                         <img className="lg:h-48 md:h-36  w-full object-cover object-center" src={databaseService.getFilePreview( post.featuredImageID )} alt="blog" />
                                         <div className="p-6 flex-1 ">

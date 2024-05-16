@@ -18,7 +18,7 @@ class AuthService {
             return res
 
         } catch ( error ) {
-            console.log( "Error :: creating account", error, error );
+            console.log( "Error :: creating account", error );
             toast.error( error.code == 409 ? "Account already exist." : "Try after some time." );
         }
     }
@@ -41,7 +41,25 @@ class AuthService {
             return res
 
         } catch ( error ) {
-            console.log( "Error :: Verification", error, error );
+            console.log( "Error :: updateVerification", error );
+        }
+    }
+    async createRecovery( email ) {
+       return await this.account.createRecovery( email, `${window.location.origin}/forget-password` );
+    }
+
+    async updateRecovery( userId, secret ,password, conformPassword ) {
+        try {
+            const res = await this.account.updateRecovery(
+                userId,
+                secret,
+                password,
+                conformPassword
+            )
+            return res
+
+        } catch ( error ) {
+            console.log( "Error :: updateRecovery", error );
         }
     }
 

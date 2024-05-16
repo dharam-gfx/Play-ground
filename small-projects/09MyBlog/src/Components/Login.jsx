@@ -3,7 +3,7 @@ import { Button, InputField } from '../pages/index'
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../features/AuthSlice';
 import authService from '../appwrite/Auth'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { toast } from 'react-toastify';
 const Login = () => {
@@ -34,7 +34,7 @@ const Login = () => {
 
     }
     return (
-        <div className="dark:bg-gray-900 p-5 h-[calc(100vh-180px)]">
+        <div className="dark:bg-gray-900 p-5 h-[calc(100vh-160px)]">
         <h1 className='dark:text-white text-3xl mb-5 text-center font-bold'>Login</h1>
 
             <div className='max-w-md mx-auto  p-5 border dark:bg-gray-800 rounded-md'>
@@ -93,6 +93,7 @@ const Login = () => {
                             <span className='pl-1'>Apple</span>
                         </Button>
                     </div>
+                    <div><Link to="/forget-password" className='text-blue-600 text-center pt-4 block underline cursor-pointer '>Forget Password</Link></div>
                 </form>
             </div>
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { Layout, Home, About, Login, Signup, PageNotFound, CreatePost, EditPost, AuthContainer, Post, VerifyEmail } from './pages/index';
+import { Layout, Home, About, Login, Signup, PageNotFound, CreatePost, EditPost, AuthContainer, Post, VerifyEmail, ForgetPassword } from './pages/index';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
@@ -15,6 +15,7 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login />}></Route>
       <Route path='/signup' element={<Signup />}></Route>
       <Route path='/verify-email' element={<VerifyEmail />}></Route>
+      <Route path='/forget-password' element={<ForgetPassword />}></Route>
       <Route path='/post/:postID' loader={EditPostAPI} element={<Post />}></Route>
       <Route path='/create-post' element={<AuthContainer><CreatePost /></AuthContainer>}></Route>
       <Route path='/edit-post/:postID' loader={EditPostAPI} element={<AuthContainer><EditPost /></AuthContainer>}></Route>
