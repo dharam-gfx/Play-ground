@@ -2,33 +2,33 @@ import React, { useEffect, useState } from 'react'
 import { addTodo, updateTodo } from '../features/todo/todoSlice';
 import { useDispatch, useSelector } from 'react-redux';
 const AddTodo = () => {
-  const [todo, setTodo] = useState( "" )
+  const [todo, setTodo] = useState("")
   const dispatch = useDispatch();
-  const todoInputs = useSelector( ( state ) => {
+  const todoInputs = useSelector((state) => {
     return state.todoUpdateInput
-  } )
+  })
 
-  const addTodoHandler = ( todo ) => {
-    if ( !todo.trim() ) return;
-    dispatch( addTodo( todo ) );
-    setTodo( "" )
+  const addTodoHandler = (todo) => {
+    if (!todo.trim()) return;
+    dispatch(addTodo(todo));
+    setTodo("")
   }
-  const updateTodoHandler = ( id, todo ) => {
-    if ( !todo.trim() ) return;
-    dispatch( updateTodo( { id, todo } ) );
+  const updateTodoHandler = (id, todo) => {
+    if (!todo.trim()) return;
+    dispatch(updateTodo({ id, todo }));
   }
 
-  useEffect( () => {
-    setTodo( todoInputs?.todo );
-  }, [todoInputs?.isUpdated] )
+  useEffect(() => {
+    setTodo(todoInputs?.todo);
+  }, [todoInputs?.isUpdated])
 
   return (
     <div>
-      <form onSubmit={( e ) => e.preventDefault()} >
+      <form onSubmit={(e) => e.preventDefault()} >
         <div className="p-4 flex gap-4 dark:bg-gray-700 rounded-[10px] dark:border-0 border border-orange-500">
           <div className="relative w-full min-w-[150px] h-10">
             <input
-              onChange={( e ) => setTodo( e.target.value )}
+              onChange={(e) => setTodo(e.target.value)}
               value={todo}
               name='todo'
               className="peer w-full h-full bg-transparent text-orange-400 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-orange-500 placeholder-shown:border-t-orange-500 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-orange-500 focus:border-orange-500"
@@ -41,16 +41,16 @@ const AddTodo = () => {
             {
               !todoInputs?.isUpdated ?
                 <button
-                title='Add Todo'
-                  onClick={() => addTodoHandler( todo )}
+                  title='Add Todo'
+                  onClick={() => addTodoHandler(todo)}
                   className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none px-4 h-10 max-h-[40px] rounded-lg text-xs bg-orange-500 text-white shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
                   type="submit">
                   <span className='whitespace-nowrap'>Add</span>
                 </button>
                 :
                 <button
-                title='Update Todo'
-                  onClick={() => updateTodoHandler( todoInputs?.id, todo )}
+                  title='Update Todo'
+                  onClick={() => updateTodoHandler(todoInputs?.id, todo)}
                   className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none px-4 h-10 max-h-[40px] rounded-lg text-xs bg-green-500 text-white shadow-md shadow-green-500/20 hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
                   type="submit">
                   <span className='whitespace-nowrap'>Update</span>
