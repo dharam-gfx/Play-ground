@@ -34,8 +34,9 @@ const PostFrom = ( { post } ) => {
         setDisabled( true )
         if ( !data.userID ) data.userID = userID;
         console.log( data );
-        if ( data.featuredImageID[0]?.size > 70000 ) {
+        if ( data.featuredImageID[0]?.size > 7000000 ) {
             toast.warning( "Please upload image below of 50KB" );
+            setDisabled( false )
             return
         }
         if ( post ) {
@@ -60,10 +61,11 @@ const PostFrom = ( { post } ) => {
             console.log( file );
             data.featuredImageID = file.$id;
             const dbPost = await databaseService.createPost( { ...data } );
-
+            console.log("dbPostdbPost",dbPost);
+            dbPost && await databaseService.createPostViewCount({postID:dbPost.$id , viewCount: 0})
             if ( dbPost ) {
                 toast.success( "Posted SuccessFully" )
-                navigate( '/' );
+                navigate( "/post/" + dbPost.$id );
             } else {
                 file && databaseService.deleteFile( file.$id )
             }

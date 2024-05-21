@@ -36,7 +36,62 @@ class DatabaseService {
 
         }
     }
+    async createPostViewCount( { postID, viewCount = 0 } ) {
+        try {
+            return await this.databases.createDocument(
+                appWriteConfig.appWriteDatabaseID,
+                appWriteConfig.appWritePostViewCountCollectionID,
+                ID.unique(),
+                {
+                    postID,
+                    viewCount
+                }
+            )
 
+        } catch ( error ) {
+            console.log( "Error :: creating PostViewCount", error );
+
+        }
+    }
+    async getPostViewCount( queries = [] ) {
+        try {
+            return await this.databases.listDocuments(
+                appWriteConfig.appWriteDatabaseID,
+                appWriteConfig.appWritePostViewCountCollectionID,
+                queries
+            );
+
+        } catch ( error ) {
+            console.log( "Error :: get PostViewCount", error );
+        }
+    }
+       async updatedPostViewCount( documentID, { viewCount } ) {
+            const count = viewCount + 1;
+        try {
+            return await this.databases.updateDocument(
+                appWriteConfig.appWriteDatabaseID,
+                appWriteConfig.appWritePostViewCountCollectionID,
+                documentID,
+                {
+                    viewCount:count
+                } );
+
+        } catch ( error ) {
+            console.log( "Error :: update PostViewCount", error );
+        }
+    }
+    async deletePostViewCount( documentID ) {
+        try {
+            await this.databases.deleteDocument(
+                appWriteConfig.appWriteDatabaseID,
+                appWriteConfig.appWritePostViewCountCollectionID,
+                documentID );
+            
+        } catch ( error ) {
+            log( "Error :: delete PostViewCount", error );
+            return false;
+        }
+    }
     async getPost( documentID ) {
         try {
             return await this.databases.getDocument(
@@ -45,7 +100,7 @@ class DatabaseService {
                 documentID );
 
         } catch ( error ) {
-            console.log( "Error :: getting post", error );
+            console.log( "Error :: get post", error );
         }
     }
     async getPosts( queries = [Query.equal( 'status', ["active"] )] ) {
@@ -57,7 +112,7 @@ class DatabaseService {
             );
 
         } catch ( error ) {
-            console.log( "Error :: getting posts", error );
+            console.log( "Error :: get posts", error );
         }
     }
     async deletePost( documentID, featuredImageID ) {
@@ -68,7 +123,7 @@ class DatabaseService {
                 documentID );
             return this.deleteFile( featuredImageID );
         } catch ( error ) {
-            log( "Error :: getting post", error );
+            log( "Error :: delete post", error );
             return false;
         }
     }
@@ -89,7 +144,7 @@ class DatabaseService {
                 } );
 
         } catch ( error ) {
-            console.log( "Error :: getting post", error );
+            console.log( "Error :: update post", error );
         }
     }
 

@@ -19,6 +19,7 @@ import SelectField from "../Components/formComponents/SelectField.jsx";
 import Logo from "../Components/Logo.jsx";
 import CreatePost from "../Components/Posts/CreatePost.jsx";
 import Posts from "../Components/Posts/Posts.jsx";
+import PostViewCount from "../Components/Posts/PostViewCount.jsx";
 import PostFrom from "../Components/Posts/PostFrom.jsx";
 import EditPost from "../Components/Posts/EditPost.jsx";
 import Post from "../Components/Posts/Post.jsx";
@@ -46,6 +47,7 @@ export {
     Logo,
     CreatePost,
     Posts,
+    PostViewCount,
     EditPost,
     Post,
     AuthContainer,

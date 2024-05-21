@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import databaseService from '../../appwrite/Databases';
 import { BallTriangle } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom';
+import { PostViewCount } from '../../pages/index.js';
 const Posts = () => {
     const [posts, setPosts] = useState( [] );
     const [loader, setLoader] = useState( true );
@@ -21,6 +22,9 @@ const Posts = () => {
         },
         [],
     )
+    const postClickHandler = ( id ) => {
+        navigate( "/post/" + id )
+    }
 
     return (
         <div>
@@ -37,10 +41,10 @@ const Posts = () => {
             <section className="text-gray-600 dark:bg-gray-900 dark:text-white body-font">
                 <div className="container px-5 py-10 md:py-15 mx-auto">
 
-                    <div className="flex flex-wrap -m-4"> 
+                    <div className="flex flex-wrap -m-4">
                         {
                             posts && posts.map( ( post ) => (
-                                <div onClick={() => navigate( "/post/" + post.$id )} key={post.$id} className="p-4 md:w-1/3 cursor-pointer transition-all transform hover:scale-105">
+                                <div onClick={() => postClickHandler( post.$id )} key={post.$id} className="p-4 md:w-1/3 cursor-pointer transition-all transform hover:scale-105">
                                     <div className="h-full border-2 flex flex-col border-gray-200 hover:border-blue-600 border-opacity-60 rounded-lg overflow-hidden">
                                         <img className="lg:h-48 md:h-36  w-full object-cover object-center" src={databaseService.getFilePreview( post.featuredImageID )} alt="blog" />
                                         <div className="p-6 flex-1 ">
@@ -62,12 +66,12 @@ const Posts = () => {
                                                             <svg className="w-4 h-4 mr-1" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                                                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                                 <circle cx="12" cy="12" r="3"></circle>
-                                                            </svg>1.2K
+                                                            </svg> <PostViewCount postID={post.$id}></PostViewCount>
                                                         </span>
                                                         <span className="text-gray-400 inline-flex items-center leading-none text-sm">
                                                             <svg className="w-4 h-4 mr-1" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                                                                 <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                                                            </svg>6
+                                                            </svg>0
                                                         </span>
                                                     </div>
                                                 </div>

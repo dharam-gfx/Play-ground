@@ -15,8 +15,6 @@ export const AuthSlice = createSlice( {
             localStorage.setItem( "loginStatus", true );
             state.userAuth.status = true;
             state.userAuth.userInfo = action.payload
-            console.log( state.userAuth.userInfo,"action.payload");
-
         },
         logout: ( state, action ) => {
             state.userAuth.status = false;

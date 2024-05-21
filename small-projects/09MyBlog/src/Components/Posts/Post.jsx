@@ -11,13 +11,20 @@ const Post = () => {
     const authenticated = useSelector( ( state ) => state.AuthReducer.userAuth.status );
     const userID = useSelector( ( state ) => state.AuthReducer.userAuth.userInfo?.$id );
     const [loader, setLoader] = useState( true );
-    useEffect( () => {       
-    window.scrollTo( { top: 0, behavior: 'smooth' } );
-    post && setLoader(false)
-    }, [post] )
+    useEffect( () => {
+        window.scrollTo( { top: 0, behavior: 'smooth' } );
+        post && setLoader( false );
+        updatePostViewCountHandler()
+
+    }, [post] );
+    const updatePostViewCountHandler = async () => {
+        if ( post?.viewPostCountID ) {
+            await databaseService.updatedPostViewCount( post?.viewPostCountID, { viewCount: post?.viewPostCount } );
+        }
+    }
     return (
         <div className="text-gray-600 dark:bg-gray-900 dark:text-white body-font">
-        <BallTriangle
+            <BallTriangle
                 height={50}
                 width={50}
                 radius={5}
@@ -72,6 +79,7 @@ const Post = () => {
 
                                             const isDeleted = await databaseService.deletePost( post.$id, post.featuredImageID );
                                             if ( isDeleted ) {
+                                                post?.viewPostCountID && await databaseService.deletePostViewCount( post?.viewPostCountID )
                                                 toast.success( "Post Deleted" )
                                                 navigate( "/" )
                                             }
