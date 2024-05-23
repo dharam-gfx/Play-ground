@@ -9,7 +9,7 @@ const Layout = () => {
     const dispatch = useDispatch()
     useEffect( () => {
         authService.getCurrentUser().then( user => {
-            console.log( "userInfo", user );
+          //  console.log( "userInfo", user );
             if ( user ) {
                 dispatch( login( user ) )
             }
