@@ -9,7 +9,7 @@ const About = () => {
     address: 'Please Wait...',
   } )
   useEffect( () => {
-    let data = getUser();
+    getUser();
   }, [] )
 
   async function getUser() {
