@@ -34,7 +34,7 @@ const PostFrom = ( { post } ) => {
         setDisabled( true )
         if ( !data.userID ) data.userID = userID;
         console.log( data );
-        if ( data.featuredImageID[0]?.size > 7000000 ) {
+        if ( data.featuredImageID[0]?.size > 55000 ) {
             toast.warning( "Please upload image below of 50KB" );
             setDisabled( false )
             return

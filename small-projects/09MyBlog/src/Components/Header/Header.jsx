@@ -32,14 +32,14 @@ const Header = () => {
       active: true
     },
     {
-      name: "About",
-      path: "/about",
-      active: true
-    },
-    {
       name: "Create Post",
       path: "/create-post",
       active: authenticated
+    },
+    {
+      name: "About",
+      path: "/about",
+      active: true
     },
   ]
 

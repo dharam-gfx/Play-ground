@@ -38,7 +38,7 @@ const Posts = () => {
                 wrapperClass="dark:bg-gray-900 flex justify-center h-[100vh] items-center"
                 visible={loader}
             />
-            <section className="text-gray-600 dark:bg-gray-900 dark:text-white body-font">
+            <section className="text-gray-600 min-h-[calc(100vh-242px)] dark:bg-gray-900 dark:text-white body-font">
                 <div className="container px-5 py-10 md:py-15 mx-auto">
 
                     <div className="flex flex-wrap -m-4">
