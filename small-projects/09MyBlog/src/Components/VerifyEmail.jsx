@@ -29,7 +29,7 @@ const VerifyEmail = () => {
         ( async () => {
             let emailVerification = await getUser();
             console.log( "emailVerification", emailVerification, authenticated );
-            setIsEmailVerification( searchParams.get( "userId" ) && searchParams.get( "secret" ) ? true : false );
+            setIsEmailVerification((searchParams.get( "userId" ) && searchParams.get( "secret" )) );
             if ( searchParams.get( "userId" ) && searchParams.get( "secret" ) && !emailVerification) {
                 verifyEmail();
             }

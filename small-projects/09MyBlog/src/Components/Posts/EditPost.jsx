@@ -19,7 +19,7 @@ const EditPost = () => {
                 ariaLabel="ball-triangle-loading"
                 wrapperStyle={{}}
                 wrapperClass="dark:bg-gray-900 flex justify-center h-[100vh] items-center"
-                visible={post ? false : true}
+                visible={!post}
             />
 
             <PostFrom post={post}></PostFrom>
