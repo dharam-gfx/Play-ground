@@ -21,7 +21,7 @@ const ForgetPassword = () => {
         console.log( password, conformPassword, searchParams.get( "userId" ), searchParams.get( "secret" ) );
         await authService.updateRecovery( searchParams.get( "userId" ), searchParams.get( "secret" ), password, conformPassword )
             .then( ( res ) => {
-                toast.success( "Password forget successfully.", {
+                toast.success( "Password changed successfully.", {
                     autoClose: 3000,
                 } );
                 navigate( "/" );
@@ -37,7 +37,6 @@ const ForgetPassword = () => {
             toast.success( "Please check your email", {
                 autoClose: 5000,
             } );
-            navigate( "/" );
         } ).catch( ( error ) => {
             toast.error( "Email is not correct!" );
             setDisabled( false )

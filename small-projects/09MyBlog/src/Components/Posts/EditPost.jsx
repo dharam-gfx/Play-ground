@@ -36,5 +36,5 @@ export const EditPostAPI = async ( { params } ) => {
       const viewData = await databaseService.getPostViewCount( [Query.equal( 'postID', [data.$id] )] );
       const viewPostCountID= viewData?.documents[0]?.$id ?? null;
       const viewPostCount= viewData?.documents[0]?.viewCount ?? 0;
-    return {...data,viewPostCountID:viewPostCountID , viewPostCount:viewPostCount} ?? {}
+    return {...data,viewPostCountID:viewPostCountID , viewPostCount:viewPostCount} || {}
 }
