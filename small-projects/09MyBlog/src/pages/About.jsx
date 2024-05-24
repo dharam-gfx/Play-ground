@@ -23,7 +23,7 @@ const About = () => {
 
   }
   return (
-    <div className='min-h-[calc(100vh-242px)] dark:bg-gray-900 dark:text-white pt-16'>
+    <div className='min-h-[calc(100vh-242px)] dark:bg-gray-900 dark:text-white pt-16 px-4'>
       <div className="overflow-hidden shadow rounded-lg border max-w-[400px] mx-auto">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg leading-6 font-medium dark:text-white text-gray-900">

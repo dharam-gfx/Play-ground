@@ -34,7 +34,7 @@ const Post = () => {
                 wrapperClass="dark:bg-gray-900 flex justify-center h-[100vh] items-center"
                 visible={loader}
             />
-            <article className="px-4 py-10 mx-auto max-w-7xl">
+            <article className="px-4 py-10 mx-auto max-w-8xl">
 
                 <div className="w-full mx-auto mb-12 text-left md:w-3/4 lg:w-1/2">
 
